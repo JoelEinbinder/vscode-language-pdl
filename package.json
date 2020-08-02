@@ -1,0 +1,34 @@
+{
+    "name": "protocol-definition-language",
+    "displayName": "Protocol Definition Language",
+    "description": "Highlights Chrome DevTools PDL files",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.47.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "pdl",
+                "aliases": [
+                    "Protocol Definition Language",
+                    "pdl"
+                ],
+                "extensions": [
+                    ".pdl"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "pdl",
+                "scopeName": "source.pdl",
+                "path": "./syntaxes/pdl.tmLanguage.json"
+            }
+        ]
+    }
+}

@@ -1,0 +1,174 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Protocol Definition Language",
+	"patterns": [
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#domain"
+		},
+		{
+			"include": "#depends"
+		},
+		{
+			"include": "#type"
+		},
+		{
+			"include": "#command"
+		},
+		{
+			"include": "#parameter"
+		},
+		{
+			"include": "#header"
+		},
+		{
+			"include": "#major-minor"
+		},
+		{
+			"include": "#redirect"
+		},
+		{
+			"include": "#enum-item"
+		}
+	],
+	"repository": {
+		"comment": {
+			"name": "comment",
+			"begin": "^\\s*#",
+			"end": "$",
+			"patterns": [{
+				"name": "markup.italic",
+				"begin": "`",
+				"end": "`|$"
+			}]
+		},
+		"domain": {
+			"begin": "^(experimental )?(deprecated )?(domain) (.*)",
+			"end": "$",
+			"captures": {
+				"1": {
+					"name": "keyword"
+				},
+				"2": {
+					"name": "keyword"
+				},
+				"3": {
+					"name": "keyword"
+				},
+				"4": {
+					"name": "entity.name.class"
+				}
+			}
+		},
+		"depends": {
+			"begin": "^  (depends on) ([^\\s]+)",
+			"end": "$",
+			"captures": {
+				"1": {
+					"name": "keyword"
+				},
+				"2": {
+					"name": "entity.name.class"
+				}
+			}
+		},
+		"type": {
+			"name": "keyword",
+			"begin": "^  (experimental )?(deprecated )?type (.*) extends ((array) of )?([^\\s]+)",
+			"end": "$",
+			"captures": {
+				"3": {
+					"name": "entity.name.type"
+				},
+				"5": {
+					"name": "entity.name.type"
+				},
+				"6": {
+					"name": "entity.name.type"
+				}
+			}
+		},
+		"command": {
+			"begin": "^  (experimental )?(deprecated )?(command|event) (.*)",
+			"end": "$",
+			"captures": {
+				"1": {
+					"name": "keyword"
+				},
+				"2": {
+					"name": "keyword"
+				},
+				"3": {
+					"name": "keyword"
+				},
+				"4": {
+					"name": "entity.name.function"
+				}
+			}
+		},
+		"parameter": {
+			"begin": "^      (experimental )?(deprecated )?(optional )?((array) (of) )?([^\\s]+) ([^\\s]+)",
+			"end": "$",
+			"captures": {
+				"1": {
+					"name": "keyword"
+				},
+				"2": {
+					"name": "keyword"
+				},
+				"3": {
+					"name": "keyword"
+				},
+				"4": {
+					"name": "entity.name.type"
+				},
+				"6": {
+					"name": "keyword"
+				},
+				"7": {
+					"name": "entity.name.type"
+				},
+				"8": {
+					"name": "variable.parameter"
+				}
+			}
+		},
+		"header": {
+			"name": "keyword",
+			"begin": "^(    (enum|parameters|returns|properties)|version)",
+			"end": "$"
+		},
+		"major-minor": {
+			"begin": "^  (major|minor) (\\d+)",
+			"end": "$",
+			"captures": {
+				"1": {
+					"name": "keyword"
+				},
+				"2": {
+					"name": "constant.numeric"
+				}
+			}
+		},
+		"redirect": {
+			"begin": "^    (redirect) ([^\\s]+)",
+			"end": "$",
+			"captures": {
+				"1": {
+					"name": "keyword"
+				},
+				"2": {
+					"name": "entity.name.class"
+				}
+			}
+		},
+		"enum-item": {
+			"name": "string",
+			"begin": "^      (  )?[^\\s]+$",
+			"end": "$"
+		}
+	},
+	"scopeName": "source.pdl"
+}
